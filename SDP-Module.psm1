@@ -1,5 +1,25 @@
-
 function Resolve-Ticket {
+    <#
+.DESCRIPTION
+    Used to set Resolution content and set the ticket status.
+    Must have all default fields completed first i.e Group/Technician/Status
+.PARAMETER ServerURL
+    Service Desk Plus API Key defaults to 'C:\SDP\SandboxURL.txt' or you can provide a plain text version.
+.PARAMETER apikey
+    Service Desk Plus API Key defaults to 'C:\SDP\Sandbox.key' or you can provide a plain text version.
+.PARAMETER RequestID
+    Request ID of the ticket to modify
+.PARAMETER Resolution
+    The plain text resolution to add to the ticket
+.PARAMETER Status
+    Validated set currently supports "Resolved", "Closed".
+.EXAMPLE
+    Resolve-Ticket -Resolution "Software has been installed on users computer" -RequestID 498417 -Status Resolved
+    Resolve-Ticket -Resolution "Duplicate Request" -RequestID 498417 -Status Closed -ServerURL "http://Servicedesk.Plus:8080" -apikey "54C597FC-D5EF-4214-BB2E-65CA0890132C"
+.NOTES
+    Author: Gary Smith
+    Date:   January 22, 2019    
+#>
     [CmdletBinding()]
     param (
         [Parameter(Mandatory = $true)]
@@ -54,6 +74,26 @@ function Resolve-Ticket {
 
 
 function Set-Group_Tech {
+    <#
+.DESCRIPTION
+    Used to set the Group and the Technician.
+.PARAMETER ServerURL
+    Service Desk Plus API Key defaults to 'C:\SDP\SandboxURL.txt' or you can provide a plain text version.
+.PARAMETER apikey
+    Service Desk Plus API Key defaults to 'C:\SDP\Sandbox.key' or you can provide a plain text version.
+.PARAMETER RequestID
+    Request ID of the ticket to modify
+.PARAMETER Group
+    Enter the Group name to assign the ticket to.
+.PARAMETER Technician
+    Enter the Technician name to assign the ticket to.
+.EXAMPLE
+    Set-Group_Tech -RequestID 498412 -Group "Service Desk" -Technician "John Doe"
+    Set-Group_Tech -RequestID 498412 -Group "Service Desk" -Technician "John Doe" -ServerURL "http://Servicedesk.Plus:8080" -apikey "54C597FC-D5EF-4214-BB2E-65CA0890132C"
+.NOTES
+    Author: Gary Smith
+    Date:   January 22, 2019    
+#>
     [CmdletBinding()]
     param (
         [Parameter(Mandatory = $true)]
@@ -110,6 +150,23 @@ function Set-Group_Tech {
 
 
 function Add-Notes {
+    <#
+.DESCRIPTION
+    Used to set add notes to tickets.
+.PARAMETER ServerURL
+    Service Desk Plus API Key defaults to 'C:\SDP\SandboxURL.txt' or you can provide a plain text version.
+.PARAMETER apikey
+    Service Desk Plus API Key defaults to 'C:\SDP\Sandbox.key' or you can provide a plain text version.
+.PARAMETER RequestID
+    Request ID of the ticket to modify
+.PARAMETER NoteContents
+    Plain text that will be added to the body of the note
+.EXAMPLE
+    Add-Notes -RequestID 498412 -NoteContents "Automatic Script was run to add software to computer ComputerName. Please purchase the corrisponding licence"
+.NOTES
+    Author: Gary Smith
+    Date:   January 22, 2019    
+#>
     [CmdletBinding()]
     param (
         [Parameter(Mandatory = $true)]
