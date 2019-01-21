@@ -36,17 +36,8 @@ function Resolve-Ticket {
     )
     
     begin {
-        $LogFolder = "C:\Script_logs\$RequestID"
-        $LogFileName = "$RequestID.Resolve-Ticket"
-
-        $LogFolderTest = test-path $LogFolder
-        If (!$LogFolderTest) {
-            New-Item -ItemType Directory -Path $LogFolder
-        }
-        $LogFile = "$LogFolder\$LogFileName.txt"
-
-        Write-Output "New Log Started:" (Get-Date) | Out-File -FilePath $LogFile -Append
-        Write-Output "Begin Resolve-Ticket API Call"  | Out-File -FilePath $LogFile -Append
+        Write-Output "New Log Started:" (Get-Date)
+        Write-Output "Begin Resolve-Ticket API Call"
     }
     
     process {
@@ -67,8 +58,8 @@ function Resolve-Ticket {
     }
     
     end {
-        Write-Output $API_response | Out-File -FilePath $LogFile -Append
-        Write-Host "End Resolve-Ticket API Call`n"  | Out-File -FilePath $LogFile -Append
+        Write-Output $API_response
+        Write-Output "End Resolve-Ticket API Call`n"
     }
 }
 
@@ -109,17 +100,8 @@ function Set-Group_Tech {
     )
     
     begin {
-        $LogFolder = "C:\Script_logs\$RequestID"
-        $LogFileName = "$RequestID.Set-Group_Tech"
-
-        $LogFolderTest = test-path $LogFolder
-        If (!$LogFolderTest) {
-            New-Item -ItemType Directory -Path $LogFolder
-        }
-        $LogFile = "$LogFolder\$LogFileName.txt"
-
-        Write-Output "New Log Started:" (Get-Date) | Out-File -FilePath $LogFile -Append
-        Write-Output "Begin: Set Group and Technician API Call:" | Out-File -FilePath $LogFile -Append
+        Write-Output "New Log Started:" (Get-Date)
+        Write-Output "Begin: Set Group and Technician API Call:"
     }
     
     process {
@@ -141,10 +123,10 @@ function Set-Group_Tech {
     }
     
     end {
-        Write-Output "Status_code: $($API_response_object.response_status.messages.status_code)" | Out-File -FilePath $LogFile -Append 
-        Write-Output "Message: $($API_response_object.response_status.messages.message)" | Out-File -FilePath $LogFile -Append 
-        Write-Output "Result: $($API_response_object.response_status.messages.type)" | Out-File -FilePath $LogFile -Append 
-        Write-Output "End: Set Group and Technician API Call:`n" | Out-File -FilePath $LogFile -Append 
+        Write-Output "Status_code: $($API_response_object.response_status.messages.status_code)"
+        Write-Output "Message: $($API_response_object.response_status.messages.message)"
+        Write-Output "Result: $($API_response_object.response_status.messages.type)"
+        Write-Output "End: Set Group and Technician API Call:`n"
     }
 }
 
@@ -180,17 +162,8 @@ function Add-Notes {
     )
     
     begin {
-        $LogFolder = "C:\Script_logs\$RequestID"
-        $LogFileName = "$RequestID.Add-Notes"
-
-        $LogFolderTest = test-path $LogFolder
-        If (!$LogFolderTest) {
-            New-Item -ItemType Directory -Path $LogFolder
-        }
-        $LogFile = "$LogFolder\$LogFileName.txt"
-
-        Write-Output "New Log Started:" (Get-Date) | Out-File -FilePath $LogFile -Append
-        Write-Output "Begin: Add Notes API v1 Call:" | Out-File -FilePath $LogFile -Append
+        Write-Output "New Log Started:" (Get-Date)
+        Write-Output "Begin: Add Notes API v1 Call:"
     }
     
     process {
@@ -216,12 +189,11 @@ function Add-Notes {
 "@
         $postparams = @{OPERATION_NAME = 'ADD_NOTE'; TECHNICIAN_KEY = $apikey; INPUT_DATA = $inputData; FORMAT = 'XML'}
         $API_response = Invoke-WebRequest -Uri "$ServerURL/sdpapi/request/$RequestID/notes" -Method POST -Body $postparams
-       
     }
     
     end {
-        Write-Output "$($API_response.content)" | Out-File -FilePath $LogFile -Append
-        Write-Output "End: Add Notes API v1 Call:`n" | Out-File -FilePath $LogFile -Append 
+        Write-Output "$($API_response.content)"
+        Write-Output "End: Add Notes API v1 Call:`n"
     }
 }
 
