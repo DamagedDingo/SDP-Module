@@ -25,3 +25,6 @@ File contains your Production and Sandbox SQL DB Path, Server URL, APIKey. This 
 
 
 Currently Testing on Version 9.4 Build 9425 (Version 10 is currently avalible but I do not have access yet)
+
+
+**** SDP-Module will be removed once I have completed merging it into the dynamic one.  
